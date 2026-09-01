@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Debug\\Main_Dibujo2D.obj",
+            "outputs": [
+                "Debug\\Main_Dibujo2D.cpp.obj.dt.module.json",
+                "Debug\\Main_Dibujo2D.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
