@@ -201,7 +201,7 @@ int main() {
 	
 	glm::mat4 projection=glm::mat4(1);
 
-	projection = glm::perspective(45.0f, (GLfloat)screenWidth / (GLfloat)screenHeight, 5.0f, 100.0f);//FOV, Radio de aspecto,znear,zfar
+	projection = glm::perspective(45.0f, (GLfloat)screenWidth / (GLfloat)screenHeight, 0.1f, 100.0f);//FOV, Radio de aspecto,znear,zfar
 	//projection = glm::ortho(0.0f, (GLfloat)screenWidth, 0.0f, (GLfloat)screenHeight, 0.1f, 1000.0f);//Izq,Der,Fondo,Alto,Cercania,Lejania
 	while (!glfwWindowShouldClose(window))
 	{
@@ -219,9 +219,9 @@ int main() {
 		glm::mat4 model=glm::mat4(1);
 		glm::mat4 view=glm::mat4(1);
 	
-	    view = glm::translate(view, glm::vec3(0.0f,0.0f, 0.0f));
-		//model = glm::rotate( model, 0.5f, glm::vec3( 0.0f, 1.0f, 0.0f ) ); // use to compare orthographic and perspective projection
-		//model = glm::scale(model, glm::vec3(2.0f, 1.0f, 1.0f));
+	    view = glm::translate(view, glm::vec3(0.0f,-1.0f,-9.0f));
+		model = glm::rotate( model, 0.5f, glm::vec3( 0.0f, 1.0f, 0.0f ) ); // use to compare orthographic and perspective projection
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 1.0f));
 		//view = glm::translate( view, glm::vec3( screenWidth / 2, screenHeight / 5,-700.0f ) ); // use with orthographic projection
 		
 		GLint modelLoc = glGetUniformLocation(ourShader.Program, "model");
@@ -236,45 +236,46 @@ int main() {
 		//Caja 1
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-		/*model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(1.0f, -5.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(5.5f, 5.5f, 5.5f));
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.0f, -2.0f, -1.0f));
+		model = glm::scale(model, glm::vec3(3.0f, 1.5f, 2.5f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		////caja 2
-		//glBindVertexArray(VAO);
-		//model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		glBindVertexArray(VAO);
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.0f, 1.5f, 0.0f));
+		model = glm::rotate(model, 0.5f, glm::vec3(-12.0f, 12.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		////caja 3
-		//glBindVertexArray(VAO);
-		//model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(0.5f, 1.7f, 0.0f));
-		//model = glm::scale(model, glm::vec3(1.5f, 0.5f, 1.5f));
-		//model = glm::rotate(model, 0.5f, glm::vec3(1.0f, 0.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		glBindVertexArray(VAO);
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.5f, 2.5f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.5f, 0.5f, 1.5f));
+		model = glm::rotate(model, 0.5f, glm::vec3(0.0f, -20.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		////caja 4
-		//glBindVertexArray(VAO);
-		//model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(0.3f, 2.4f, 0.0f));
-		//model = glm::scale(model, glm::vec3(0.8f, 0.9f, 0.5f));
-		//model = glm::rotate(model, 0.5f, glm::vec3(4.0f, 300.0f, 5.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		glBindVertexArray(VAO);
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-0.3f, 3.3f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.8f, 0.9f, 0.5f));
+		model = glm::rotate(model, 0.5f, glm::vec3(18.0f, 30.0f, 5.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		////caja 5
-		//glBindVertexArray(VAO);
-		//model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(-0.35f, 3.2f, 0.0f));
-		//model = glm::scale(model, glm::vec3(0.6f, 0.8f, 0.5f));
-		//model = glm::rotate(model, 0.5f, glm::vec3(-4.0f, -300.0f, 10.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		glBindVertexArray(VAO);
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-0.55f, 4.2f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.6f, 0.8f, 0.5f));
+		model = glm::rotate(model, 0.5f, glm::vec3(-4.0f, -300.0f, 10.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		////caja 6
 		//glBindVertexArray(VAO);
