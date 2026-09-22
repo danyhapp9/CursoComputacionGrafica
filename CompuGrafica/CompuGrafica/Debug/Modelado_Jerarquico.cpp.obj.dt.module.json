@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Debug\\Modelado_Jerarquico.obj",
+            "outputs": [
+                "Debug\\Modelado_Jerarquico.cpp.obj.dt.module.json",
+                "Debug\\Modelado_Jerarquico.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
