@@ -1,9 +1,9 @@
 ﻿  Carga de Modelos.cpp
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(111,30): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(206,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(207,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(211,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(212,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(214,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(215,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(115,30): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(253,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(254,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(258,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(259,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(261,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Carga de Modelos.cpp(262,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
   CompuGrafica.vcxproj -> C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\Debug\CompuGrafica.exe

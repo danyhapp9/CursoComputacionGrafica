@@ -1,5 +1,5 @@
 //Daniel Imanol GOmez Varela
-//Previo 5
+//Practica 6
 //21 Septiembre 2026
 
 
@@ -27,7 +27,7 @@
 #include "stb_image.h"
 
 // Properties
-const GLuint WIDTH = 800, HEIGHT = 600;
+const GLuint WIDTH = 1200, HEIGHT = 720;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Function prototypes
@@ -59,7 +59,7 @@ int main( )
     glfwWindowHint( GLFW_RESIZABLE, GL_FALSE );
     
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Previo 5 Daniel Gomez", nullptr, nullptr );
+    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Practica 6 Daniel Gomez", nullptr, nullptr );
     
     if ( nullptr == window )
     {
@@ -100,9 +100,13 @@ int main( )
     
     // Load models
 	Model dog((char*) "Models/RedDog.obj");
-    glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
-    
-  
+	Model micro((char*) "Models/microfono.obj");
+	Model bocina((char*)"Models/bafle.obj");
+    Model piano((char*)"Models/piano.obj");
+    Model silla((char*)"Models/silla.obj");
+	Model escenario((char*)"Models/emptystagedesing.obj");
+
+    glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
     // Game loop
     while (!glfwWindowShouldClose(window))
@@ -126,16 +130,59 @@ int main( )
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
-        // Draw the loaded model
-        glm::mat4 model(1);
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		dog.Draw(shader);
 
-		model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		dog.Draw(shader);
+        // aqui 
+        GLint modelLoc = glGetUniformLocation(shader.Program, "model");
+        glm::mat4 model(1.0f);
 
+
+
+        // Piano
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-1.5f, -1.0f, -3.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        piano.Draw(shader);
+
+        // Silla 
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-1.5f, -1.5f, -2.0f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        silla.Draw(shader);
+
+        // Micrófono
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(1.0f, -1.4f, -0.7f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        micro.Draw(shader);
+
+        // Bocina derecha
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.5f, -1.2f, -3.5f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        bocina.Draw(shader);
+
+        // Bocina izquierda (el mismo modelo, dibujado otra vez en otra posición)
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-3.5f, -1.2f, -3.5f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        bocina.Draw(shader);
+
+        // Perro
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(1.2f, -1.2f, -1.6f));
+        model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        dog.Draw(shader);
+    
+        // escenario
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, -2.3f, -2.5f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        escenario.Draw(shader);
 
 
         // Swap the buffers
