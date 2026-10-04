@@ -1,9 +1,12 @@
 ﻿  Texturizado.cpp
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(179,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(279,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(280,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(284,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(285,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(287,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(288,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(252,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(352,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(353,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(357,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(358,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(360,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\CompuGrafica\Texturizado.cpp(361,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+soil2-debug.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_DXT.obj)' o en 'C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+soil2-debug.lib(image_helper.obj) : warning LNK4099: no se encontró PDB '' con 'soil2-debug.lib(image_helper.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+soil2-debug.lib(SOIL2.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(SOIL2.obj)' o en 'C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
   CompuGrafica.vcxproj -> C:\Users\dagov\OneDrive\Escritorio\CursoComputacionGrafica\CompuGrafica\Debug\CompuGrafica.exe

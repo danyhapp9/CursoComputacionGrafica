@@ -1,6 +1,6 @@
 //Daniel Imanol Gomez Varela
-// Previo 7
-// 28-9-27
+// Practica 7: Texturizado
+// 3-9-27
 
 #include <iostream>
 #include <cmath>
@@ -60,7 +60,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 7 Daniel Gomez", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 7 Daniel Gomez", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -100,22 +100,54 @@ int main()
 	// Build and compile our shader program
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
 
-	// Set up vertex data (and buffer(s)) and attribute pointers
 	GLfloat vertices[] =
 	{
-		// Positions            // Colors              // Texture Coords
-		-0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,0.0f,
-		0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		1.0f,0.0f,
-		0.5f,  0.5f, 0.0f,     1.0f, 1.0f,1.0f,	    1.0f,1.0f,
-		-0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,1.0f,
+		 //Positions              // Colors            // Texture Coords
+		 //Frente (+Z) -> 1
+		-0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.0338f, 0.5724f,
+		 0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3137f, 0.5724f,
+		 0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3137f, 0.9634f,
+		-0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.0338f, 0.9634f,
 
-		
+		// Derecha (+X) -> 2
+		 0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3563f, 0.5724f,
+		 0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.6362f, 0.5724f,
+		 0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.6362f, 0.9634f,
+		 0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3563f, 0.9634f,
+
+		//  Arriba (+Y) -> 3
+		 -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.6950f, 0.5742f,
+		  0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.9750f, 0.5742f,
+		  0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.9750f, 0.9651f,
+		 -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.6950f, 0.9651f,
+
+		//  Abajo (-Y) -> 4
+		 -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.0262f, 0.0384f,
+		  0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.3050f, 0.0384f,
+		  0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3050f, 0.4293f,
+		 -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.0262f, 0.4293f,
+
+		 // Izquierda (-X) -> 5
+		 -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.3563f, 0.0419f,
+		 -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.6362f, 0.0419f,
+		 -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.6362f, 0.4311f,
+		 -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.3563f, 0.4311f,
+
+		 // Atras (-Z) -> 6
+		  0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.6950f, 0.0419f,
+		 -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.9750f, 0.0419f,
+		 -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.9750f, 0.4311f,
+		  0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.6950f, 0.4311f,
 	};
 
 	GLuint indices[] =
-	{  // Note that we start from 0!
-		0,1,3,
-		1,2,3
+	{ 
+		0,  1,  3,    1,  2,  3,   // Frente
+		4,  5,  7,    5,  6,  7,   // Derecha
+		8,  9, 11,    9, 10, 11,   // Arriba
+		12, 13, 15,   13, 14, 15,   // Abajo
+		16, 17, 19,   17, 18, 19,   // Izquierda
+		20, 21, 23,   21, 22, 23    // Atras
 	
 	};
 
@@ -152,15 +184,16 @@ int main()
 	unsigned char *image;
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-	// Diffuse map
-	image = stbi_load("images/01_basecolor.png", &textureWidth, &textureHeight, &nrChannels,0);
-	glBindTexture(GL_TEXTURE_2D, texture1);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	glGenerateMipmap(GL_TEXTURE_2D);
+	
+	 
+	image = stbi_load("images/dadoimagen.jpg", &textureWidth, &textureHeight, &nrChannels, 3);   // ← 3 en vez de 0
 	if (image)
 	{
+		std::cout << "Textura OK: " << textureWidth << "x" << textureHeight
+			<< " canales originales: " << nrChannels << std::endl;
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
@@ -210,7 +243,7 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		// Draw the light object (using light's vertex attributes)
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 
 		// Swap the screen buffers
