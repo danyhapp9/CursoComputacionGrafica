@@ -1,6 +1,7 @@
 //Daniel Imanol Gomez Varela
-// Practica 7: Texturizado
-// 3-9-27
+// Previo  8
+// 5-10-26
+// 
 
 #include <iostream>
 #include <cmath>

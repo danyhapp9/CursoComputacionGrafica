@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Debug\\Iluminacion.obj",
+            "outputs": [
+                "Debug\\Iluminacion.cpp.obj.dt.module.json",
+                "Debug\\Iluminacion.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
