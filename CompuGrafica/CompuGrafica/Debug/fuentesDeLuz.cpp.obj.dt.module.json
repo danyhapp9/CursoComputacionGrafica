@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Debug\\fuentesDeLuz.obj",
+            "outputs": [
+                "Debug\\fuentesDeLuz.cpp.obj.dt.module.json",
+                "Debug\\fuentesDeLuz.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
