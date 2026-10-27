@@ -1,6 +1,6 @@
-//Previo 11
-//Daniel Imanol Gomez Varela
-//26 Octube 2026
+//Practica 11
+// Daniel Imanol Gomez Varela
+//31 Octubre 2026
 
 #include <iostream>
 #include <cmath>
@@ -117,6 +117,21 @@ glm::vec3 dogPos (0.0f,0.0f,0.0f);
 float dogRot = 0.0f;
 bool step = false;
 
+//Se agregan variables para los giros LOS WAYPOINTS son los puntos de referencia que el perro debe seguir
+const float LIM = 2.0f;
+glm::vec3 waypoints[] = {
+	glm::vec3(0.0f, 0.0f,  LIM),   // A: borde frontal (+Z)
+	glm::vec3(-LIM,  0.0f,  LIM),   // B: esquina izquierda frontal
+	glm::vec3(-LIM,  0.0f, -LIM),   // C: esquina izquierda trasera
+	glm::vec3(LIM,  0.0f, -LIM),   // D: esquina derecha trasera
+	glm::vec3(0.0f, 0.0f,  0.0f)   // E: regreso al centro (diagonal)
+};
+const int numWaypoints = 5;
+int   currentWP = 0;        // waypoint al que se dirige
+bool  turning = true;     // true = girando, false = caminando
+float dogSpeed = 0.8f;     // unidades por segundo
+float turnSpeed = 120.0f;   // grados por segundo
+
 
 
 // Deltatime
@@ -135,7 +150,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 11 Daniel Gomez", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 11 Daniel Gomez", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -503,53 +518,94 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		AnimBall = !AnimBall;
 		
 	}
-	if (keys[GLFW_KEY_B])
+	if (key == GLFW_KEY_B && action == GLFW_PRESS)
 	{
-		dogAnim =!dogAnim;
-
+		dogAnim = !dogAnim;   // inicia / pausa el recorrido
 	}
 	
 }
-void Animation() {
+void Animation()
+{
 	if (AnimBall)
-	{
 		rotBall += 0.4f;
-		//printf("%f", rotBall);
-	}
-	
-	if (AnimDog)
+
+	if (!dogAnim) return;   // pausado
+
+	// ---- ¿Hacia dónde debe mirar? ----
+	glm::vec3 dir(0.0f);
+	float dist = 0.0f;
+	float targetRot;
+
+	if (currentWP < numWaypoints)
 	{
-		rotDog -= 0.6f;
-		//printf("%f", rotBall);
+		dir = waypoints[currentWP] - dogPos;
+		dir.y = 0.0f;
+		dist = glm::length(dir);
+		// El modelo mira hacia +Z con rot = 0  ->  ángulo = atan2(x, z)
+		targetRot = glm::degrees(atan2(dir.x, dir.z));
 	}
-	if (dogAnim == 1)
+	else
 	{
-		if (step == false)
+		targetRot = 0.0f;   // al terminar la vuelta vuelve a mirar al frente
+	}
+
+	if (turning)
+	{
+		// ---- Fase de giro (por el camino más corto) ----
+		float diff = targetRot - dogRot;
+		while (diff > 180.0f)  diff -= 360.0f;
+		while (diff < -180.0f) diff += 360.0f;
+
+		float stepRot = turnSpeed * deltaTime;
+		if (fabs(diff) <= stepRot)
 		{
-			FLegs += 0.6f;
-			RLegs -= 0.6f;
-			head += 0.3f;
-			tail += 0.3f;
-			if (FLegs >= 20.0f) //Condicion para que las piernas se muevan hacia adelante y hacia atras
+			dogRot = targetRot;
+			turning = false;
+
+			if (currentWP >= numWaypoints)   // vuelta completa
 			{
-				step = true;
+				dogAnim = false;
+				currentWP = 0;
+				turning = true;
+				FLegs = RLegs = head = tail = 0.0f;
+				step = false;
+				return;
 			}
 		}
 		else
 		{
-			FLegs -= 0.6f;
-			RLegs += 0.6f;
-			head -= 0.3f;
-			tail -= 0.3f;
-			if (FLegs <= -20.0f)
-			{
-				step = false;
-			}
+			dogRot += (diff > 0.0f) ? stepRot : -stepRot;
 		}
-		dogPos.z += 0.001;
-		
 	}
-	
+	else
+	{
+		// ---- Fase de avance ----
+		float stepMove = dogSpeed * deltaTime;
+		if (dist <= stepMove)
+		{
+			dogPos = waypoints[currentWP];   // llegó exacto al punto
+			currentWP++;
+			turning = true;                  // ahora gira hacia el siguiente
+		}
+		else
+		{
+			dogPos += glm::normalize(dir) * stepMove;
+		}
+	}
+
+	// ---- Movimiento de patas, cabeza y cola ----
+	if (!step)
+	{
+		FLegs += 0.3f; RLegs -= 0.3f;
+		head += 0.1f; tail += 0.1f;
+		if (FLegs >= 20.0f) step = true;
+	}
+	else
+	{
+		FLegs -= 0.3f; RLegs += 0.3f;
+		head -= 0.1f; tail -= 0.1f;
+		if (FLegs <= -20.0f) step = false;
+	}
 }
 
 void MouseCallback(GLFWwindow *window, double xPos, double yPos)
